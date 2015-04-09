@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>map</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="mapfiles/mapapi_3.12.9.js"></script>
+<script type="text/javascript" src="js/map_helper.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<!--弹出层控件-->
+<script type="text/javascript" src="js/popup_layer.js"></script>
+<script type="text/javascript">
+//封装操作对象
+var maphelper = null;
+//信息窗口
+var infowindow = null;
+//地图对象
+var mapobj = null;
+$(function() {
+	   var mapCanvas = document.getElementById("map_canvas");
+		//地图选项
+		var myOptions = {
+		//初始缩放级别
+		zoom: 12,
+		//显示中心位置      
+		center: new Array(119.69663500785828, 31.369760901943426),  
+		//取消默认的控件
+		disableDefaultUI: false,   
+		//缩放移动控件   
+		navigationControl: true,   
+		navigationControlOptions: {position: google.maps.ControlPosition.RIGHT_TOP},
+		//地图类型控件           
+		mapTypeControl: false, 
+		//比例尺控件  
+		scaleControl: true,   
+		//启用/停用在双击时缩放并居中
+		disableDoubleClickZoom:true, 
+		//地图类型
+		//NORMAL_MAP 标注地图
+		//HYBRID_MAP 卫星混合
+		//OFFLINE_MAP 离线地图
+		//TERRAIN_MAP 地形图
+		mapTypeId: OFFLINE_MAP,
+		mapPath:"maptile/googlemaps/roadmap/",
+		mapFileExt:"png"
+    };
+
+    maphelper = new mapHelper();
+    mapobj = maphelper.initMap(mapCanvas, myOptions);
+		
+	
+		maphelper.bindInstanceEvent(mapobj, 'mousemove', function(event,map,instance){
+	  		$("#CLAT").val(event.latLng.lat());
+			$("#CLNG").val(event.latLng.lng());
+		});
+		maphelper.bindInstanceEvent(mapobj, 'zoom_changed', function(event){
+			$("#ZOOM").val(maphelper.getZoom());
+		});				
+	/*
+	 	var offset = $("#DIR_PANEL").offset();
+		x = -offset.left+3;
+		y = -(offset.top+$("#DIR_PANEL").height());
+		new PopupLayer({trigger:"#DIR_PANEL",popupBlk:"#blk",closeBtn:"#close",
+		offsets:{
+			x:x,
+			y:y
+		}
+	});
+*/
+});
+
+//画圆
+function Circle()
+{
+		ClearPoly();
+		alert("点击地图进行绘制");
+		var color = $("#STROKE_COLOR").val();
+		var opacity = $("#STROKE_OPACITY").val();	
+		var fcolor = $("#FILL_COLOR").val();
+		var fopacity = $("#FILL_OPACITY").val();	
+	
+		maphelper.bindInstanceEvent(mapobj, 'click',   
+	   function(event) {	
+			
+				var circleObj =  maphelper.circle({
+						lat:event.latLng.lat(),
+						lng:event.latLng.lng(),						
+						color:color,
+						opacity:opacity,
+						fillcolor:fcolor,
+						fillopacity:fopacity,
+						radius: "1000"
+			});		
+		});
+}
+
+//清除
+function ClearPoly() {
+	dots = [];
+	maphelper.clearPoly();//清除指定几何对象或所有几何图形对象
+	maphelper.clearLine();//清除指定线段对象或所有线段对象
+	//$("#total_km").text("");
+	maphelper.clearInstanceEvent(mapobj, 'click');//删除实例其所有事件侦听器或指定侦听器.
+}
+
+//根据地址查找地址
+function FindPoint() {
+    var address = $("#ADDRESS").val();
+    maphelper.findPoint(address);
+
+}
+
+//清除marker绑定事件
+function ClearMarkerEvent()
+{
+	maphelper.clearEvents();
+}
+
+
+
+function toggleBounce(event, map, marker) {
+
+    //	alert(event.latLng);	
+    //	alert(getMethodAndPropertys(event));
+
+    //标记动画
+    if (marker.getAnimation() != null) {
+        marker.setAnimation(null);
+    } else {
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+    }
+    var contentString = '<div id="content"><div></div><h1 id="">当前信号机</h1><div id="bodyContent"><p class = "mapStyle">当前位置 ' 
+	+ event.latLng + '<br><a href="traffic.html">设置信号机</a></div></div>' ;
+	
+		if(infowindow)
+			infowindow.close();
+    infowindow = new google.maps.InfoWindow({ //根据HTML初始化infowindow
+        content: contentString
+    });
+    infowindow.open(map, marker);
+}
+
+function MarkerIcon() {
+
+		maphelper.bindInstanceEvent(mapobj, 'click',   
+	   function(event) {	
+			 
+			    var	 marker = maphelper.markerPoint({
+			        lat: event.latLng.lat(),
+			        lng: event.latLng.lng(),
+			        title: '红绿灯',
+			        icon: "images/boot2.png"
+			    });
+
+		maphelper.bindInstanceEvent(marker, 'click', toggleBounce);
+				//添加事件
+			   var MapsEvent = new google.maps.event.addListener(marker, 'click',
+			    function(event) {
+			        //event:反馈事件信息, map:当前map对象, marker:标记点对象
+			        toggleBounce(event, maphelper.map, marker);
+			    });
+
+		maphelper.bindInstanceEvent(marker, 'mouseover', 
+			function(event,map,marker) {
+				 infowindow = new google.maps.InfoWindow({ //根据HTML初始化infowindow
+            content: content
+        });
+        infowindow.open(maphelper.map, marker);
+			}
+		);
+		/*
+		maphelper.bindInstanceEvent(marker, 'mouseout',
+			function() {
+				if(infowindow)
+						infowindow.close();
+			}
+		); 
+		*/
+
+		});
+  
+		
+	 // document.write(printObj(marker)) ;
+}
+
+</script>
+
+<body >
+	<!--
+	经度<input  type="text" name="CLNG" id="CLNG" value="" size="17"/><br/>
+	维度<input  type="text" name="CLAT" id="CLAT" value="" size="17"/><br/>
+	当前地图级别<input  type="text" name="ZOOM" id="ZOOM" value="8" size="17"/><br/>
+-->
+	<input  type="button" onclick="ClearPoly()" value="清除" style="margin-left:20px;margin-top:10px;width:60px;height:20px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="button" onclick="MarkerIcon();" value=" 添加信号机 " style="margin-left:20px;margin-top:10px;width:100px;height:20px;"/>			
+   <div id="map_canvas" style="margin:4px ;width:98%; height:760px;border:2px solid #cfdfe4">
+   		这里是地图！
+   </div>
+
+</body>
+</html>

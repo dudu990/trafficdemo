@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="css/select.css" rel="stylesheet" type="text/css" />
+<link href="css/stilearn-helper.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="js/jquery.1.4.2-min.js"></script>
+
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script src="js/stilearn-base.js"></script>
+<script src="js/holder.js"></script>
+
+<script type="text/javascript" src="js/jquery.idTabs.min.js"></script>
+<script type="text/javascript" src="js/select-ui.min.js"></script>
+<script type="text/javascript" src="editor/kindeditor.js"></script>
+
+<script type="text/javascript">
+    KE.show({
+        id : 'content7',
+        cssPath : './index.css'
+    });
+  </script>
+  
+<script type="text/javascript">
+$(document).ready(function(e) {
+    $(".select1").uedSelect({
+		width : 200			  
+	});
+	$(".select2").uedSelect({
+		width : 130  
+	});
+	$(".select3").uedSelect({
+		width : 100
+	});
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".click").click(function(){
+  $(".tip").fadeIn(200);
+  });
+  
+  $(".tiptop a").click(function(){
+  $(".tip").fadeOut(200);
+});
+
+
+
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".click2").click(function(){
+  $(".tip2").fadeIn(200);
+  });
+  
+  $(".tiptop2 a").click(function(){
+  $(".tip2").fadeOut(200);
+});
+
+
+
+});
+</script>
+<script type="text/javascript" src="js/jquery.tabso_yeso.js"></script>
+<script type="text/javascript">
+$(document).ready(function($){
+	
+	
+	
+	//默认选项卡切换
+	$("#normaltab").tabso({
+		cntSelect:"#normalcon",
+		tabEvent:"mouseover",
+		tabStyle:"normal"
+	});
+	
+});
+</script>
+</head>
+
+<body>
+
+	
+    
+<div class="formbody">
+
+     <div class="tabson">
+     
+       <div class="xwbox" style="margin-left:130px;"><img src="images/img/fw.jpg" width="703" height="487" /> </div>
+       <ul class="toolbar" style=" margin-left:10px;">
+         <table width="100%" border="0" cellspacing="0" cellpadding="0">
+           <tr>
+             <td height="50"><li class="click"><span><img src="images/boot.png" alt="" width="24" height="24" /></span>信号设置</li></td>
+           </tr>
+           <tr>
+             <td height="50"><li class="click2"><span><img src="images/car.png" alt="" width="24" height="24" /></span>汽车流量</li></td>
+           </tr>
+           <tr>
+             <td height="50"><li><span><img src="images/13.png" alt="" width="24" height="23" /></span>故障信息</li></td>
+           </tr>
+           <tr>
+             <td height="50"><li><span><img src="images/clipboard.png" alt="" /></span>操作日志</li></td>
+           </tr>
+         </table>
+       </ul>
+       <div style="width:100%; float:left; margin-bottom:10px;">
+       <div style="float:left; margin-right:20px; line-height:35px; font-size:16px; font-weight:bold; font-family:宋体;">控　制：</div>
+       <ul class="toolbar">
+           
+       <li class="click"><span></span>手 动</li>
+
+         </ul>
+         
+       </div>
+       
+       <div style="width:100%; float:left;">
+       <div style="float:left; margin-right:20px; line-height:35px; font-size:16px; font-weight:bold;  font-family:宋体;">手　动：</div>
+       <ul class="toolbar">
+           
+       <li class="click"><span></span>黄 闪</li>
+         <li class="click"><span></span>关 灯</li>
+         <li><span></span>全 红</li>
+         <li><span></span>锁 定</li>
+         <li><span></span>指定相位设行</li>
+         </ul>
+         
+       </div>
+       
+       
+     </div>
+
+    
+</div>
+
+ <div class="tip">
+   	 <div class="tiptop"><span>信号设置</span><a></a></div>
+        
+      <div class="tipinfo">
+        
+        <div class="tipright" style="line-height:25px;">
+        <p>路口名称：<input type="text" class="dfinput2"  style="width:150px;"/></p>
+        <p>路口编码：<input type="text" class="dfinput2"  style="width:150px;"/></p>
+        <p>路口地址：<input type="text" class="dfinput2"  style="width:150px;"/></p>
+        <p>路口端口：<input type="text" class="dfinput2"  style="width:150px;"/></p>
+        <p>中心端口：<input type="text" class="dfinput2"  style="width:150px;"/></p>
+        <p ><table width="50%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="20">&nbsp;</td>
+    <td width="66"><btn class="forminfobtn2">保存路口信息</btn></td>
+    <td width="66"><btn class="forminfobtn">连接</btn></td>
+    <td width="203"><btn class="forminfobtn">断开</btn></td>
+    <td >&nbsp;</td>
+  </tr>
+</table></p>
+ <p style=" margin-top:5px;">工作方式：<input type="text" class="dfinput2"  style="width:150px;"/></p>
+  <p>工 作 日 ：<input type="text" class="dfinput2"  style="width:150px;"/></p>
+  <p><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="44%" align="left">工作方案：
+      <input type="text" class="dfinput2"  style="width:30px;"/></td>
+    <td width="56%">时 间 段 ：
+      <input type="text" class="dfinput2"  style="width:30px;"/></td>
+    </tr>
+</table></p>
+  <p><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="44%" align="left">步　　序：
+      <input type="text" class="dfinput2"  style="width:30px;"/></td>
+    <td width="56%">剩余时间：
+      <input type="text" class="dfinput2"  style="width:30px;"/></td>
+    </tr>
+</table></p>
+<p>故障信息：</p>
+ <div style="width:240px; height:100px; overflow:auto;"><cite>该信号灯运行正常，无故障。如果是请点击确定按钮 ，否则请点取消。该信号灯运行正常，无故障。如果是请点击确定按钮 ，否则请点取消。该信号灯运行正常，无故障。如果是请点击确定按钮 ，否则请点取消。该信号灯运行正常，无故障。如果是请点击确定按钮 ，否则请点取消。该信号灯运行正常，无故障。如果是请点击确定按钮 ，否则请点取消。该信号灯运行正常，无故障。如果是请点击确定按钮 ，否则请点取消。</cite></div>
+        
+        </div>
+        
+        <div class="tipleft">
+        <p>运行状态：未连接....</p>
+        <div style="width:500px; height:400px; float:left; overflow:hidden;"><img src="images/img/fw.jpg" width="500" height="400" /></div>
+        </div>
+     </div>
+ 
+    
+  </div>
+   <div class="tip2">
+   	 <div class="tiptop2"><span>月车流量查询</span><a></a></div>
+        
+      <div class="tipinfo2">
+        <div class="tipright" style="width:680px; padding-right:5px;">
+        <ul class="tabbtn" id="normaltab">
+		<li class="current"><a href="#">流量信息列表</a></li>
+		<li><a href="#">流量报表折线图</a></li>
+		<li><a href="#">流量报表柱状图</a></li>
+		</ul><!--tabbtn end-->
+	<div class="tabcon" id="normalcon">
+		<div class="sublist">
+			<ul>
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>1</td>
+  </tr>
+</table>
+
+			</ul>
+		</div><!--tabcon end-->
+		<div class="sublist">
+			<ul>
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>2</td>
+  </tr>
+</table>
+                </ul>
+		</div><!--tabcon end-->
+		<div class="sublist">
+			<ul>
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><img src="images/img/z.png" width="680" height="270" /></td>
+  </tr>
+</table>
+</ul>
+		</div><!--tabcon end-->
+		
+	</div><!--tabcon end-->
+        </div>
+        <div class="tipleft" style="width:180px; line-height:35px;">
+           <p>查询条件：</p>
+           <p><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>服务器：</td>
+    <td><select name="select" class="select2">
+              <option>118信号服务器</option>
+              <option>125信号服务器</option>
+              <option>006信号服务器</option>
+            </select></td>
+  </tr>
+</table>
+</p>
+           <p><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>节点名：</td>
+    <td><select name="select" class="select2">
+              <option>03阳泉路</option>
+              <option>32东虹路</option>
+              <option>22龙英伦路</option>
+            </select></td>
+  </tr>
+</table>
+</p>
+           <p><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>年　份：</td>
+    <td><select name="select" class="select2">
+              <option>2015</option>
+              <option>2014</option>
+              <option>2013</option>
+            </select></td>
+  </tr>
+</table>
+</p>
+           <p><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>月　份：</td>
+    <td><select name="select" class="select2">
+              <option>8</option>
+              <option>7</option>
+              <option>6</option>
+            </select></td>
+  </tr>
+</table>
+</p>
+<p><btn class="forminfobtn">查 询</btn></p>
+        </div>
+     </div>
+ 
+    
+  </div>
+
+</body>
+</html>
